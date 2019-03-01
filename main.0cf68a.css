@@ -3074,7 +3074,10 @@ pre .id {
   font-weight: 400;
   color: #4d4d4d;
   background: transparent;
-  opacity: 0;
+  filter:alpha(opacity=0); /* IE */
+  -moz-opacity:0; /* 老版Mozilla */
+  -khtml-opacity:0; /* 老版Safari */
+  opacity: 0; /* 支持opacity的浏览器*/
   margin: 0 0 -10px -185px;
   cursor: default;
   pointer-events: none;
@@ -3086,7 +3089,10 @@ pre .id {
 }
 
 .tooltip-top .tooltip:hover .tooltip-content {
-  opacity: 1;
+  filter:alpha(opacity=100); /* IE */
+  -moz-opacity:1; /* 老版Mozilla */
+  -khtml-opacity:1; /* 老版Safari */
+  opacity: 1; /* 支持opacity的浏览器*/
   pointer-events: auto;
   -webkit-transition-delay: 0s;
           transition-delay: 0s
