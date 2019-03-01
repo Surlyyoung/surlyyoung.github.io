@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://surlyyoung.github.io/"/>
-  <updated>2019-02-28T08:57:15.718Z</updated>
+  <updated>2019-03-01T01:31:28.220Z</updated>
   <id>https://surlyyoung.github.io/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>About ese6-let</title>
+    <link href="https://surlyyoung.github.io/2019/03/01/About-ese6-let/"/>
+    <id>https://surlyyoung.github.io/2019/03/01/About-ese6-let/</id>
+    <published>2019-03-01T01:31:28.000Z</published>
+    <updated>2019-03-01T01:31:28.220Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>About async &amp; await</title>
