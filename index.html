@@ -190,78 +190,9 @@
 <li>默认值可以引用解构赋值的其他变量，但该变量必须已经声明</li>
 </ul>
 </blockquote>
-<h2 id="对象的解构赋值-总结"><a href="#对象的解构赋值-总结" class="headerlink" title="对象的解构赋值 总结"></a>对象的解构赋值 总结</h2><blockquote>
-<ul>
-<li>对象的解构与数组有一个重要的不同。数组的元素是按次序排列的，变量的取值由它的位置决定；而对象的属性没有次序，变量必须与属性同名，才能取到正确的值</li>
-<li>等号左边的两个变量的次序，与等号右边两个同名属性的次序不一致，但是对取值完全没有影响。第二个例子的变量没有对应的同名属性，导致取不到值，最后等于undefined</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>实际上说明，对象的解构赋值是下面形式的简写<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> &#123; foo: foo, bar: bar &#125; = &#123; foo: <span class="string">"aaa"</span>, bar: <span class="string">"bbb"</span> &#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<p>对象的解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量。真正被赋值的是后者，而不是前者</p>
-<blockquote>
-<ul>
-<li>对象的解构也可以指定默认值。</li>
-<li>默认值生效的条件是，对象的属性值严格等于undefined</li>
-<li>如果解构失败，变量的值等于undefined</li>
-<li>如果解构模式是嵌套的对象，而且子对象所在的父属性不存在，那么将会报错。</li>
-<li>要将一个已经声明的变量用于解构赋值：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 错误的写法</span><br><span class="line"><span class="built_in">let</span> x;</span><br><span class="line">&#123;x&#125; = &#123;x: 1&#125;; // 解析为代码块</span><br><span class="line">// SyntaxError: syntax error</span><br><span class="line">// 正确的写法</span><br><span class="line"><span class="built_in">let</span> x;</span><br><span class="line">(&#123;x&#125; = &#123;x: 1&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>由于数组本质是特殊的对象，因此可以对数组进行对象属性的解构。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> arr = [1, 2, 3];</span><br><span class="line"><span class="built_in">let</span> &#123;0 : first, [arr.length - 1] : last&#125; = arr;</span><br><span class="line">first // 1</span><br><span class="line">last // 3</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<p>上面代码对数组进行对象解构。数组arr的0键对应的值是1，[arr.length - 1]就是2键，对应的值是3。方括号这种写法，属于“属性名表达式”</p>
-<h2 id="字符串的解构赋值"><a href="#字符串的解构赋值" class="headerlink" title="字符串的解构赋值"></a>字符串的解构赋值</h2><blockquote>
-<ul>
-<li>字符串也可以解构赋值。这是因为此时，字符串被转换成了一个类似数组的对象。</li>
-<li>类似数组的对象都有一个length属性，因此还可以对这个属性解构赋值。</li>
-</ul>
-</blockquote>
-<h2 id="数值和布尔值的解构赋值"><a href="#数值和布尔值的解构赋值" class="headerlink" title="数值和布尔值的解构赋值"></a>数值和布尔值的解构赋值</h2><blockquote>
-<ul>
-<li>解构赋值时，如果等号右边是数值和布尔值，则会先转为对象。</li>
-</ul>
-</blockquote>
-<h2 id="null和undefined的解构赋值"><a href="#null和undefined的解构赋值" class="headerlink" title="null和undefined的解构赋值"></a>null和undefined的解构赋值</h2><blockquote>
-<ul>
-<li>解构赋值的规则是，只要等号右边的值不是对象或数组，就先将其转为对象。由于undefined和null无法转为对象，所以对它们进行解构赋值，都会报错</li>
-</ul>
-</blockquote>
-<h2 id="函数参数的解构赋值"><a href="#函数参数的解构赋值" class="headerlink" title="函数参数的解构赋值"></a>函数参数的解构赋值</h2><blockquote>
-<ul>
-<li>函数参数的解构也可以使用默认值。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> move(&#123;x = 0, y = 0&#125; = &#123;&#125;) &#123;</span><br><span class="line">  <span class="built_in">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line">move(&#123;x: 3, y: 8&#125;); // [3, 8]</span><br><span class="line">move(&#123;x: 3&#125;); // [3, 0]</span><br><span class="line">move(&#123;&#125;); // [0, 0]</span><br><span class="line">move(); // [0, 0]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<p>函数move的参数是一个对象，通过对这个对象进行解构，得到变量x和y的值。如果解构失败，x和y等于默认值<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> move(&#123;x, y&#125; = &#123; x: 0, y: 0 &#125;) &#123;</span><br><span class="line">  <span class="built_in">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">move(&#123;x: 3, y: 8&#125;); // [3, 8]</span><br><span class="line">move(&#123;x: 3&#125;); // [3, undefined]</span><br><span class="line">move(&#123;&#125;); // [undefined, undefined]</span><br><span class="line">move(); // [0, 0]</span><br></pre></td></tr></table></figure></p>
-<p>上面代码是为函数move的参数指定默认值，而不是为变量x和y指定默认值，所以会得到与前一种写法不同的结果。</p>
-<blockquote>
-<ul>
-<li>undefined就会触发函数参数的默认值。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1, undefined, 3].map((x = <span class="string">'yes'</span>) =&gt; x);</span><br><span class="line">// [ 1, <span class="string">'yes'</span>, 3 ]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<h2 id="圆括号问题"><a href="#圆括号问题" class="headerlink" title="圆括号问题"></a>圆括号问题</h2><blockquote>
-<ul>
-<li>只要有可能，就不要在模式中放置圆括号。</li>
-<li>三种解构赋值不得使用圆括号</li>
-</ul>
-<ul>
-<li>（1）变量声明语句</li>
-<li>（2）函数参数</li>
-<li>（3）赋值语句的模式</li>
-</ul>
-</blockquote>
-<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2>
+        
+          <a class="article-more-a" href="/2019/03/01/About-es6-变量的解构赋值/#more">more >></a>
+        
       
 
       
