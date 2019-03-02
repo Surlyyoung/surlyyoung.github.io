@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Surly 的 blog">
 <meta property="og:description" content="参考文章 Link数组的结构赋值 总结  ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring） 只要等号两边的模式相同，左边的变量就可以被赋予对应的值 如果解构不成功(无对应的值)，变量的值就等于undefined 另一种情况是不完全解构，即等号左边的模式，只匹配一部分的等号右边的数组。这种情况下，解构依然可以成功 如果等号的右边不是数组（或者">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-02T03:27:36.000Z">
+<meta property="og:updated_time" content="2019-03-02T04:59:31.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="About es6-变量的解构赋值">
 <meta name="twitter:description" content="参考文章 Link数组的结构赋值 总结  ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring） 只要等号两边的模式相同，左边的变量就可以被赋予对应的值 如果解构不成功(无对应的值)，变量的值就等于undefined 另一种情况是不完全解构，即等号左边的模式，只匹配一部分的等号右边的数组。这种情况下，解构依然可以成功 如果等号的右边不是数组（或者">
@@ -296,7 +296,7 @@
 </blockquote>
 <blockquote>
 <ul>
-<li>遍历 Map 结构<br>任何部署了 Iterator 接口的对象，都可以用for…of循环遍历。Map 结构原生支持 Iterator 接口，配合变量的解构赋值，获取键名和键值就非常方便。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const map = new Map();</span><br><span class="line">map.set(<span class="string">'first'</span>, <span class="string">'hello'</span>);</span><br><span class="line">map.set(<span class="string">'second'</span>, <span class="string">'world'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> [key, value] of map) &#123;</span><br><span class="line">  console.log(key + <span class="string">" is "</span> + value);</span><br><span class="line">&#125;</span><br><span class="line">// first is hello</span><br><span class="line">// second is world</span><br></pre></td></tr></table></figure>
+<li>遍历 Map 结构<br>任何部署了 Iterator 接口的对象，都可以用for…of循环遍历。Map 结构原生支持 Iterator 接口，配合变量的解构赋值，获取键名和键值就非常方便。<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const map = new Map(); &#123;[key:value],[key:value]&#125;</span><br><span class="line">map.set(<span class="string">'first'</span>, <span class="string">'hello'</span>);</span><br><span class="line">map.set(<span class="string">'second'</span>, <span class="string">'world'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> [key, value] of map) &#123;</span><br><span class="line">  console.log(key + <span class="string">" is "</span> + value);</span><br><span class="line">&#125;</span><br><span class="line">// first is hello</span><br><span class="line">// second is world</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </blockquote>
