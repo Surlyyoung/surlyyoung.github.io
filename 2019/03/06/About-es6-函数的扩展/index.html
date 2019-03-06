@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://surlyyoung.github.io">
   <title>About es6-函数的扩展 | Surly 的 blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考文章 Link遗留问题 (this)函数的扩展总结 基本用法 ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面参数变量是默认声明的，在函数体中，不能用let或const再次声明。使用参数默认值时，函数不能有同名参数。参数默认值不是传值的，而是每次都重新计算默认值表达式的值。也就是说，参数默认值是惰性求值的。    *与解构赋值默认值结合使用  参数默认值可以与解构赋值的默认值，结合">
+  <meta name="description" content="参考文章 Link遗留问题 (this)函数的扩展总结 基本用法  ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面参数变量是默认声明的，在函数体中，不能用let或const再次声明。使用参数默认值时，函数不能有同名参数。参数默认值不是传值的，而是每次都重新计算默认值表达式的值。也就是说，参数默认值是惰性求值的。   与解构赋值默认值结合使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="About es6-函数的扩展">
 <meta property="og:url" content="https://surlyyoung.github.io/2019/03/06/About-es6-函数的扩展/index.html">
 <meta property="og:site_name" content="Surly 的 blog">
-<meta property="og:description" content="参考文章 Link遗留问题 (this)函数的扩展总结 基本用法 ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面参数变量是默认声明的，在函数体中，不能用let或const再次声明。使用参数默认值时，函数不能有同名参数。参数默认值不是传值的，而是每次都重新计算默认值表达式的值。也就是说，参数默认值是惰性求值的。    *与解构赋值默认值结合使用  参数默认值可以与解构赋值的默认值，结合">
+<meta property="og:description" content="参考文章 Link遗留问题 (this)函数的扩展总结 基本用法  ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面参数变量是默认声明的，在函数体中，不能用let或const再次声明。使用参数默认值时，函数不能有同名参数。参数默认值不是传值的，而是每次都重新计算默认值表达式的值。也就是说，参数默认值是惰性求值的。   与解构赋值默认值结合使用">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-06T07:41:56.966Z">
+<meta property="og:updated_time" content="2019-03-06T07:43:48.086Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="About es6-函数的扩展">
-<meta name="twitter:description" content="参考文章 Link遗留问题 (this)函数的扩展总结 基本用法 ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面参数变量是默认声明的，在函数体中，不能用let或const再次声明。使用参数默认值时，函数不能有同名参数。参数默认值不是传值的，而是每次都重新计算默认值表达式的值。也就是说，参数默认值是惰性求值的。    *与解构赋值默认值结合使用  参数默认值可以与解构赋值的默认值，结合">
+<meta name="twitter:description" content="参考文章 Link遗留问题 (this)函数的扩展总结 基本用法  ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面参数变量是默认声明的，在函数体中，不能用let或const再次声明。使用参数默认值时，函数不能有同名参数。参数默认值不是传值的，而是每次都重新计算默认值表达式的值。也就是说，参数默认值是惰性求值的。   与解构赋值默认值结合使用">
   
     <link rel="alternative" href="/atom.xml" title="Surly 的 blog" type="application/atom+xml">
   
@@ -175,12 +175,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/function" target="_blank" rel="noopener">Link</a></h3><h4 id="遗留问题-this"><a href="#遗留问题-this" class="headerlink" title="遗留问题 (this)"></a>遗留问题 (this)</h4><h2 id="函数的扩展总结"><a href="#函数的扩展总结" class="headerlink" title="函数的扩展总结"></a>函数的扩展总结</h2><ul>
-<li>基本用法<blockquote>
+<li><p>基本用法</p>
+<blockquote>
 <p>ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面<br>参数变量是默认声明的，在函数体中，不能用let或const再次声明。<br>使用参数默认值时，函数不能有同名参数。<br>参数默认值不是传值的，而是每次都重新计算默认值表达式的值。也就是说，参数默认值是惰性求值的。</p>
 </blockquote>
 </li>
+<li><p>与解构赋值默认值结合使用</p>
+</li>
 </ul>
-<p>*与解构赋值默认值结合使用</p>
+<a id="more"></a>
 <blockquote>
 <p>参数默认值可以与解构赋值的默认值，结合起来使用<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> foo(&#123;x, y = 5&#125;) &#123;</span><br><span class="line">  console.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line">foo(&#123;&#125;) // undefined 5</span><br><span class="line">foo(&#123;x: 1&#125;) // 1 5</span><br><span class="line">foo(&#123;x: 1, y: 2&#125;) // 1 2</span><br><span class="line">foo() // TypeError: Cannot <span class="built_in">read</span> property <span class="string">'x'</span> of undefined</span><br></pre></td></tr></table></figure></p>
 </blockquote>
