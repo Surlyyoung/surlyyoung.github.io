@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://surlyyoung.github.io">
-  <title>Archives: 2019 | Surly 的 blog</title>
+  <title>About-es6-模块的加载 | Surly 的 blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Surly 的 blog">
-<meta property="og:url" content="https://surlyyoung.github.io/archives/2019/page/2/index.html">
+  <meta name="description" content="参考文章 Link浏览器加载 HTML 网页中，浏览器通过script标签加载 JavaScript 脚本默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到script标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间如果脚本体积很大，下载和执行的时间就会很长，因此造成浏览器堵塞，用户会感觉到浏览器“卡死”了，没有任何响应。这显然是很不好">
+<meta property="og:type" content="article">
+<meta property="og:title" content="About-es6-模块的加载">
+<meta property="og:url" content="https://surlyyoung.github.io/2019/03/11/模块的加载/index.html">
 <meta property="og:site_name" content="Surly 的 blog">
+<meta property="og:description" content="参考文章 Link浏览器加载 HTML 网页中，浏览器通过script标签加载 JavaScript 脚本默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到script标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间如果脚本体积很大，下载和执行的时间就会很长，因此造成浏览器堵塞，用户会感觉到浏览器“卡死”了，没有任何响应。这显然是很不好">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-11T07:35:16.314Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Surly 的 blog">
+<meta name="twitter:title" content="About-es6-模块的加载">
+<meta name="twitter:description" content="参考文章 Link浏览器加载 HTML 网页中，浏览器通过script标签加载 JavaScript 脚本默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到script标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间如果脚本体积很大，下载和执行的时间就会很长，因此造成浏览器堵塞，用户会感觉到浏览器“卡死”了，没有任何响应。这显然是很不好">
   
     <link rel="alternative" href="/atom.xml" title="Surly 的 blog" type="application/atom+xml">
   
@@ -150,106 +154,232 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-模块的加载" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      About-es6-模块的加载
+    </h1>
+  
+
+        
+        <a href="/2019/03/11/模块的加载/" class="archive-article-date">
+  	<time datetime="2019-03-11T03:31:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-11</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/module-loader" target="_blank" rel="noopener">Link</a></h3><h3 id="浏览器加载"><a href="#浏览器加载" class="headerlink" title="浏览器加载"></a>浏览器加载</h3><blockquote>
+<p>HTML 网页中，浏览器通过script标签加载 JavaScript 脚本<br>默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到script标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间<br>如果脚本体积很大，下载和执行的时间就会很长，因此造成浏览器堵塞，用户会感觉到浏览器“卡死”了，没有任何响应。这显然是很不好的体验，所以浏览器允许脚本异步加载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;path/to/myModule.js&quot; defer&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;path/to/myModule.js&quot; async&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>有defer或async属性，脚本就会异步加载。渲染引擎遇到这一行命令，就会开始下载外部脚本，但不会等它下载和执行，而是直接执行后面的命令<br><strong>defer与async的区别是：</strong><br>defer要等到整个页面在内存中正常渲染结束（DOM 结构完全生成，以及其他脚本执行完成），才会执行；<strong>defer在 渲染及其他脚本 后执行</strong> 多个则顺序执行<br>async一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。<strong>async在 下载 后执行，且会中断渲染</strong> 多个不保证顺序，下载速度决定</p>
+</blockquote>
+<blockquote>
+<p>浏览器加载 ES6 模块，也使用script标签，但是要加入type=”module”属性， 是异步加载，等同于打开 defer<br><strong>对于外部的模块脚本需要注意</strong></p>
+<ol>
+<li>代码是在模块作用域之中运行，而不是在全局作用域运行。模块内部的顶层变量，外部不可见。</li>
+<li>模块脚本自动采用严格模式，不管有没有声明use strict。</li>
+<li>模块之中，可以使用import命令加载其他模块（.js后缀不可省略，需要提供绝对 URL 或相对 URL），也可以使用export命令输出对外接口。</li>
+<li>模块之中，顶层的this关键字返回undefined，而不是指向window。也就是说，在模块顶层使用this关键字，是无意义的。 // 判断当前代码是否在 ES6 模块之中</li>
+<li>同一个模块如果加载多次，将只执行一次。</li>
+</ol>
+</blockquote>
+<h3 id="ES6-模块与-CommonJS-模块的差异"><a href="#ES6-模块与-CommonJS-模块的差异" class="headerlink" title="ES6 模块与 CommonJS 模块的差异"></a>ES6 模块与 CommonJS 模块的差异</h3><p><strong>1.CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。</strong><br><strong>2.CommonJS 模块是运行时加载，ES6 模块是编译时输出接口</strong></p>
+<a id="more"></a>
+<blockquote>
+<p>第二个差异是因为 CommonJS 加载的是一个对象（即module.exports属性），该对象只有在脚本运行完才会生成。而 ES6 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成</p>
+</blockquote>
+<blockquote>
+<p>CommonJS 模块输出的是值的拷贝，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值<br>第一个差异是因为ES6 模块的运行机制与 CommonJS 不一样。JS 引擎对脚本静态分析的时候，遇到模块加载命令import，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。换句话说，ES6 的import有点像 Unix 系统的“符号连接”，原始值变了，import加载的值也会跟着变。因此，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块<br>由于 ES6 输入的模块变量，只是一个“符号连接”，所以这个变量是只读的，对它进行重新赋值会报错，但可以添加属性。<br>export通过接口，输出的是同一个值。不同的脚本加载这个接口，得到的都是同样的实例</p>
+</blockquote>
+<h3 id="Node加载"><a href="#Node加载" class="headerlink" title="Node加载"></a>Node加载</h3><blockquote>
+<p>Node 对 ES6 模块的处理比较麻烦，因为它有自己的 CommonJS 模块格式，与 ES6 模块格式是不兼容的。目前的解决方案是，将两者分开，ES6 模块和 CommonJS 采用各自的加载方案。<br>Node 要求 ES6 模块采用.mjs后缀文件名。也就是说，只要脚本文件里面使用import或者export命令，那么就必须采用.mjs后缀名。require命令不能加载.mjs文件，会报错，只有import命令才可以加载.mjs文件。反过来，.mjs文件里面也不能使用require命令，必须使用import</p>
+</blockquote>
+<blockquote>
+<p>Node 的import命令只支持加载本地模块（file:协议），不支持加载远程模块。如果模块名不含路径，那么import命令会去node_modules目录寻找这个模块</p>
+</blockquote>
+<blockquote>
+<p>如果脚本文件省略了后缀名，比如import ‘./foo’，Node 会依次尝试四个后缀名：./foo.mjs、./foo.js、./foo.json、./foo.node。如果这些脚本文件都不存在，Node 就会去加载./foo/package.json的main字段指定的脚本。如果./foo/package.json不存在或者没有main字段，那么就会依次加载./foo/index.mjs、./foo/index.js、./foo/index.json、./foo/index.node。如果以上四个文件还是都不存在，就会抛出错误。</p>
+</blockquote>
+<blockquote>
+<p>Node 的import命令是异步加载，这一点与浏览器的处理方法相同</p>
+</blockquote>
+<blockquote>
+<p>Node 规定 ES6 模块之中不能使用 CommonJS 模块的特有的一些内部变量arguments、require、module、exports、<strong>filename、</strong>dirname</p>
+</blockquote>
+<h3 id="ES6-模块加载-CommonJS-模块"><a href="#ES6-模块加载-CommonJS-模块" class="headerlink" title="ES6 模块加载 CommonJS 模块"></a>ES6 模块加载 CommonJS 模块</h3><blockquote>
+<p>Node 的import命令加载 CommonJS 模块，Node 会自动将module.exports属性，当作模块的默认输出，即等同于export default xx<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// c.js</span><br><span class="line">module.exports = <span class="keyword">function</span> <span class="function"><span class="title">two</span></span>() &#123;</span><br><span class="line">  <span class="built_in">return</span> 2;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// es.js</span><br><span class="line">import foo from <span class="string">'./c'</span>;</span><br><span class="line">foo(); // 2</span><br><span class="line"></span><br><span class="line">import * as bar from <span class="string">'./c'</span>;</span><br><span class="line">bar.default(); // 2</span><br><span class="line">bar(); // throws, bar is not a <span class="keyword">function</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>由于 ES6 模块是编译时确定输出接口，CommonJS 模块是运行时确定输出接口，所以采用import命令加载 CommonJS 模块时，不允许采用下面的写法。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 正确的写法一</span><br><span class="line">import * as express from <span class="string">'express'</span>;</span><br><span class="line">const app = express.default();</span><br><span class="line"></span><br><span class="line">// 正确的写法二</span><br><span class="line">import express from <span class="string">'express'</span>;</span><br><span class="line">const app = express();</span><br></pre></td></tr></table></figure></p>
+<h3 id="CommonJS-模块加载-ES6-模块"><a href="#CommonJS-模块加载-ES6-模块" class="headerlink" title="CommonJS 模块加载 ES6 模块"></a>CommonJS 模块加载 ES6 模块</h3><blockquote>
+<p>CommonJS 模块加载 ES6 模块，不能使用require命令，而要使用import()函数(返回Promise对象)。ES6 模块的所有输出接口，会成为输入对象的属性。</p>
+</blockquote>
+<h3 id="循环加载"><a href="#循环加载" class="headerlink" title="循环加载"></a>循环加载</h3><blockquote>
+<p>“循环加载”（circular dependency）指的是，a脚本的执行依赖b脚本，而b脚本的执行又依赖a脚本.对于 JavaScript 语言来说，目前最常见的两种模块格式 CommonJS 和 ES6，处理“循环加载”的方法是不一样的，返回的结果也不一样。</p>
+</blockquote>
+<p><strong>CommonJS 模块的加载原理</strong></p>
+<blockquote>
+<p>CommonJS 的一个模块，就是一个脚本文件。require命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  id: &apos;...&apos;,</span><br><span class="line">  exports: &#123; ... &#125;,</span><br><span class="line">  loaded: true,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>以后需要用到这个模块的时候，就会到exports属性上面取值。即使再次执行require命令，也不会再次执行该模块，而是到缓存之中取值。也就是说，CommonJS 模块无论加载多少次，都只会在第一次加载时运行一次，以后再加载，就返回第一次运行的结果，除非手动清除系统缓存。<br><strong>CommonJS 模块的循环加载</strong></p>
+<blockquote>
+<p>CommonJS 模块的重要特性是加载时执行，即脚本代码在require的时候，就会全部执行。一旦出现某个模块被”循环加载”，就只输出已经执行的部分，还未执行的部分不会输出</p>
+</blockquote>
+<p><strong>ES6 模块的循环加载</strong></p>
+<blockquote>
+<p>ES6 模块是动态引用，如果使用import从一个模块加载变量（即import foo from ‘foo’），那些变量不会被缓存，而是成为一个指向被加载模块的引用，需要开发者自己保证，真正取值的时候能够取到值。<br>优先执行被引用的模块</p>
+</blockquote>
+<h3 id="ES6-模块的转码"><a href="#ES6-模块的转码" class="headerlink" title="ES6 模块的转码"></a>ES6 模块的转码</h3><blockquote>
+<p>浏览器目前还不支持 ES6 模块，为了现在就能使用，可以将其转为 ES5 的写法。除了 Babel 可以用来转码之外，还有以下两个方法，也可以用来转码</p>
+<ol>
+<li>ES6 module transpiler</li>
+<li>SystemJS </li>
+</ol>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/imgs/alipay-code.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/imgs/wechat-code.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/22/try-again/" class="archive-article-date">
-  	<time datetime="2019-02-22T07:31:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/22/try-again/">try again</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://surlyyoung.github.io/2019/03/11/模块的加载/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/22/first-time-writing-in-my-blog/" class="archive-article-date">
-  	<time datetime="2019-02-22T07:03:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/08/About-es6-Module/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">About-es6-Module</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/22/first-time-writing-in-my-blog/">first time  writing in my blog</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/22/hello-world/" class="archive-article-date">
-  	<time datetime="2019-02-22T06:44:25.619Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/22/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -273,8 +403,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
