@@ -172,23 +172,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/module-loader" target="_blank" rel="noopener">Link</a></h3><h3 id="浏览器加载"><a href="#浏览器加载" class="headerlink" title="浏览器加载"></a>浏览器加载</h3><blockquote>
+        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/module-loader,ECMAScript 6 入门-阮一峰" target="_blank" rel="noopener">Link</a></h3><h3 id="浏览器加载"><a href="#浏览器加载" class="headerlink" title="浏览器加载"></a>浏览器加载</h3><blockquote>
 <p>HTML 网页中，浏览器通过script标签加载 JavaScript 脚本<br>默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到script标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间<br>如果脚本体积很大，下载和执行的时间就会很长，因此造成浏览器堵塞，用户会感觉到浏览器“卡死”了，没有任何响应。这显然是很不好的体验，所以浏览器允许脚本异步加载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;path/to/myModule.js&quot; defer&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;path/to/myModule.js&quot; async&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
 <p>有defer或async属性，脚本就会异步加载。渲染引擎遇到这一行命令，就会开始下载外部脚本，但不会等它下载和执行，而是直接执行后面的命令<br><strong>defer与async的区别是：</strong><br>defer要等到整个页面在内存中正常渲染结束（DOM 结构完全生成，以及其他脚本执行完成），才会执行；<strong>defer在 渲染及其他脚本 后执行</strong> 多个则顺序执行<br>async一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。<strong>async在 下载 后执行，且会中断渲染</strong> 多个不保证顺序，下载速度决定</p>
 </blockquote>
-<blockquote>
-<p>浏览器加载 ES6 模块，也使用script标签，但是要加入type=”module”属性， 是异步加载，等同于打开 defer<br><strong>对于外部的模块脚本需要注意</strong></p>
-<ol>
-<li>代码是在模块作用域之中运行，而不是在全局作用域运行。模块内部的顶层变量，外部不可见。</li>
-<li>模块脚本自动采用严格模式，不管有没有声明use strict。</li>
-<li>模块之中，可以使用import命令加载其他模块（.js后缀不可省略，需要提供绝对 URL 或相对 URL），也可以使用export命令输出对外接口。</li>
-<li>模块之中，顶层的this关键字返回undefined，而不是指向window。也就是说，在模块顶层使用this关键字，是无意义的。 // 判断当前代码是否在 ES6 模块之中</li>
-<li>同一个模块如果加载多次，将只执行一次。</li>
-</ol>
-</blockquote>
-<h3 id="ES6-模块与-CommonJS-模块的差异"><a href="#ES6-模块与-CommonJS-模块的差异" class="headerlink" title="ES6 模块与 CommonJS 模块的差异"></a>ES6 模块与 CommonJS 模块的差异</h3><p><strong>1.CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。</strong><br><strong>2.CommonJS 模块是运行时加载，ES6 模块是编译时输出接口</strong></p>
         
           <a class="article-more-a" href="/2019/03/11/模块的加载/#more">more >></a>
         
@@ -253,7 +242,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/module" target="_blank" rel="noopener">Link</a></h3><h2 id="Module语法及背景"><a href="#Module语法及背景" class="headerlink" title="Module语法及背景"></a>Module语法及背景</h2><blockquote>
+        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/module,ECMAScript 6 入门-阮一峰" target="_blank" rel="noopener">Link</a></h3><h2 id="Module语法及背景"><a href="#Module语法及背景" class="headerlink" title="Module语法及背景"></a>Module语法及背景</h2><blockquote>
 <p>在 ES6 之前，社区制定了一些模块加载方案，最主要的有 CommonJS 和 AMD 两种。前者用于服务器，后者用于浏览器。ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案。<br>ES6 模块的设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。CommonJS 和 AMD 模块，都只能在运行时确定这些东西。比如，CommonJS 模块就是对象，输入时必须查找对象属性。这种加载称为“运行时加载”，因为只有运行时才能得到这个对象，导致完全没办法在编译时做“静态优化”。</p>
 </blockquote>
 <blockquote>
@@ -329,7 +318,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/array" target="_blank" rel="noopener">Link</a></h3><h2 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h2><blockquote>
+        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/array,ECMAScript 6 入门-阮一峰" target="_blank" rel="noopener">Link</a></h3><h2 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h2><blockquote>
 <p>扩展运算符（spread）是三个点（…）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列<br>该运算符主要用于函数调用。将一个数组，变为参数序列<br>扩展运算符与正常的函数参数可以结合使用，非常灵活。<br>扩展运算符后面还可以放置表达式。<br>如果扩展运算符后面是一个空数组，则不产生任何效果。<br>扩展运算符如果放在括号中，JavaScript 引擎就会认为这是函数调用。如果这时不是函数调用，就会报错。</p>
 </blockquote>
         
@@ -396,7 +385,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/function" target="_blank" rel="noopener">Link</a></h3><h4 id="遗留问题-this"><a href="#遗留问题-this" class="headerlink" title="遗留问题 (this)"></a>遗留问题 (this)</h4><h2 id="函数的扩展总结"><a href="#函数的扩展总结" class="headerlink" title="函数的扩展总结"></a>函数的扩展总结</h2><ul>
+        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/function,ECMAScript 6 入门-阮一峰" target="_blank" rel="noopener">Link</a></h3><h4 id="遗留问题-this"><a href="#遗留问题-this" class="headerlink" title="遗留问题 (this)"></a>遗留问题 (this)</h4><h2 id="函数的扩展总结"><a href="#函数的扩展总结" class="headerlink" title="函数的扩展总结"></a>函数的扩展总结</h2><ul>
 <li><p>基本用法</p>
 <blockquote>
 <p>ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面<br>参数变量是默认声明的，在函数体中，不能用let或const再次声明。<br>使用参数默认值时，函数不能有同名参数。<br>参数默认值不是传值的，而是每次都重新计算默认值表达式的值。也就是说，参数默认值是惰性求值的。</p>
@@ -469,7 +458,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/let" target="_blank" rel="noopener">Link</a></h3><h2 id="数组的结构赋值-总结"><a href="#数组的结构赋值-总结" class="headerlink" title="数组的结构赋值 总结"></a>数组的结构赋值 总结</h2><blockquote>
+        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/let,ECMAScript 6 入门-阮一峰" target="_blank" rel="noopener">Link</a></h3><h2 id="数组的结构赋值-总结"><a href="#数组的结构赋值-总结" class="headerlink" title="数组的结构赋值 总结"></a>数组的结构赋值 总结</h2><blockquote>
 <ul>
 <li>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）</li>
 <li>只要等号两边的模式相同，左边的变量就可以被赋予对应的值</li>
@@ -551,7 +540,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/let" target="_blank" rel="noopener">Link</a></h3><h2 id="let总结"><a href="#let总结" class="headerlink" title="let总结"></a>let总结</h2><blockquote>
+        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/let,ECMAScript 6 入门-阮一峰" target="_blank" rel="noopener">Link</a></h3><h2 id="let总结"><a href="#let总结" class="headerlink" title="let总结"></a>let总结</h2><blockquote>
 <ul>
 <li>let命令只在代码块中作用，let为 JavaScript 新增了块级作用域，不会出现 因为变量提升而导致内层变量覆盖外层变量，以及 内层变量泄露为全局变量(例如for中)</li>
 <li>for循环有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域，当用let命令在for中定义时，两个作用域不干扰</li>
@@ -629,7 +618,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/async" target="_blank" rel="noopener">Link</a></h3><h2 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h2><blockquote>
+        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/async,ECMAScript 6 入门-阮一峰" target="_blank" rel="noopener">Link</a></h3><h2 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h2><blockquote>
 <p>ES2017 标准引入了 async 函数，使得异步操作变得更加方便<br>async 函数是什么？一句话，它就是 Generator 函数的语法糖,async函数就是将 Generator 函数的星号（*）替换成async，将yield替换成await<br>async函数对 Generator 函数的改进，体现在以下四点:</p>
 <ul>
 <li>内置执行器 Generator 函数的执行必须靠执行器，所以才有了co模块，而async函数自带执行器。也就是说，async函数的执行，与普通函数一模一样，只要一行</li>
@@ -702,7 +691,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/iterator" target="_blank" rel="noopener">Link</a></h3><h2 id="for-of-循环"><a href="#for-of-循环" class="headerlink" title="for of 循环"></a>for of 循环</h2><blockquote>
+        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/iterator,ECMAScript 6 入门-阮一峰" target="_blank" rel="noopener">Link</a></h3><h2 id="for-of-循环"><a href="#for-of-循环" class="headerlink" title="for of 循环"></a>for of 循环</h2><blockquote>
 <p>ES6 借鉴 C++、Java、C# 和 Python 语言，引入了for…of循环，作为遍历所有数据结构的统一的方法。</p>
 </blockquote>
 <blockquote>
@@ -775,7 +764,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener">Link</a></h3><h2 id="Basic-useage"><a href="#Basic-useage" class="headerlink" title="Basic useage"></a>Basic useage</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var promise1 = new Promise(<span class="keyword">function</span>(resolve, reject) &#123;</span><br><span class="line">  var obj = &#123;code:200,message:<span class="string">'ok'</span>,data:<span class="string">''</span>&#125;</span><br><span class="line">  setTimeout(<span class="function"><span class="title">function</span></span>() &#123; //发起请求，请求处理（异步操作）</span><br><span class="line">    resolve(obj); //成功之后</span><br><span class="line">  &#125;, 300);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise1.then(<span class="keyword">function</span>(data) &#123;</span><br><span class="line">  console.log(data);</span><br><span class="line">  // expected output: &#123; code: 200, message: <span class="string">"ok"</span>, data: <span class="string">""</span> &#125;</span><br><span class="line">&#125;).catch(<span class="keyword">function</span>(e)&#123;console.log(e)&#125;);</span><br><span class="line"></span><br><span class="line">console.log(promise1);</span><br><span class="line">// expected output: [object Promise]</span><br></pre></td></tr></table></figure>
+        <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/promise,ECMAScript 6 入门-阮一峰" target="_blank" rel="noopener">Link</a></h3><h2 id="Basic-useage"><a href="#Basic-useage" class="headerlink" title="Basic useage"></a>Basic useage</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var promise1 = new Promise(<span class="keyword">function</span>(resolve, reject) &#123;</span><br><span class="line">  var obj = &#123;code:200,message:<span class="string">'ok'</span>,data:<span class="string">''</span>&#125;</span><br><span class="line">  setTimeout(<span class="function"><span class="title">function</span></span>() &#123; //发起请求，请求处理（异步操作）</span><br><span class="line">    resolve(obj); //成功之后</span><br><span class="line">  &#125;, 300);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise1.then(<span class="keyword">function</span>(data) &#123;</span><br><span class="line">  console.log(data);</span><br><span class="line">  // expected output: &#123; code: 200, message: <span class="string">"ok"</span>, data: <span class="string">""</span> &#125;</span><br><span class="line">&#125;).catch(<span class="keyword">function</span>(e)&#123;console.log(e)&#125;);</span><br><span class="line"></span><br><span class="line">console.log(promise1);</span><br><span class="line">// expected output: [object Promise]</span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2019/02/27/About-Promise/#more">more >></a>
         
