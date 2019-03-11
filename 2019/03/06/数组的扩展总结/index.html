@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Surly 的 blog">
 <meta property="og:description" content="参考文章 Link扩展运算符 扩展运算符（spread）是三个点（…）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列该运算符主要用于函数调用。将一个数组，变为参数序列扩展运算符与正常的函数参数可以结合使用，非常灵活。扩展运算符后面还可以放置表达式。如果扩展运算符后面是一个空数组，则不产生任何效果。扩展运算符如果放在括号中，JavaScript 引擎就会认为这是函数调用。如果这">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-06T10:05:50.772Z">
+<meta property="og:updated_time" content="2019-03-11T03:22:40.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="About-es6-数组的扩展总结">
 <meta name="twitter:description" content="参考文章 Link扩展运算符 扩展运算符（spread）是三个点（…）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列该运算符主要用于函数调用。将一个数组，变为参数序列扩展运算符与正常的函数参数可以结合使用，非常灵活。扩展运算符后面还可以放置表达式。如果扩展运算符后面是一个空数组，则不产生任何效果。扩展运算符如果放在括号中，JavaScript 引擎就会认为这是函数调用。如果这">
@@ -177,6 +177,7 @@
         <h3 id="参考文章-Link"><a href="#参考文章-Link" class="headerlink" title="参考文章 Link"></a>参考文章 <a href="http://es6.ruanyifeng.com/#docs/array" target="_blank" rel="noopener">Link</a></h3><h2 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h2><blockquote>
 <p>扩展运算符（spread）是三个点（…）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列<br>该运算符主要用于函数调用。将一个数组，变为参数序列<br>扩展运算符与正常的函数参数可以结合使用，非常灵活。<br>扩展运算符后面还可以放置表达式。<br>如果扩展运算符后面是一个空数组，则不产生任何效果。<br>扩展运算符如果放在括号中，JavaScript 引擎就会认为这是函数调用。如果这时不是函数调用，就会报错。</p>
 </blockquote>
+<a id="more"></a>
 <h3 id="替代函数的-apply-方法"><a href="#替代函数的-apply-方法" class="headerlink" title="替代函数的 apply 方法"></a>替代函数的 apply 方法</h3><p>下面是扩展运算符取代apply方法的一个实际的例子，应用Math.max方法，简化求出一个数组最大元素的写法。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// ES5 的写法</span><br><span class="line">Math.max.apply(null, [14, 3, 77])</span><br><span class="line"></span><br><span class="line">// ES6 的写法</span><br><span class="line">Math.max(...[14, 3, 77])</span><br><span class="line"></span><br><span class="line">// 等同于</span><br><span class="line">Math.max(14, 3, 77);</span><br></pre></td></tr></table></figure></p>
 <h3 id="扩展运算符的应用"><a href="#扩展运算符的应用" class="headerlink" title="扩展运算符的应用"></a>扩展运算符的应用</h3><ol>
 <li>复制数组<blockquote>
